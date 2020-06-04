@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 import logo from "../../images/logo.svg";
 
@@ -10,27 +11,26 @@ const Navbar = () => {
     setBurger((prevState) => !prevState);
   };
 
+ 
   return (
     <nav className="navbar has-background-black">
       <div className="navbar-brand">
-        <a
+        <Link
+        to="/home"
           className="navbar-item has-text-weight-bold has-text-primary"
-          href="!#"
+         
         >
           <img src={logo} alt="Felix logo" />
-        </a>
-        <a
-          href
+        </Link>
+        <Link
+          to="/login"
           role="button"
           className={`navbar-burger burger ${burger && "is-active"}`}
           aria-label="menu"
           aria-expanded="false"
           onClick={onClick}
         >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+        </Link>
       </div>
 
       <div
@@ -39,7 +39,8 @@ const Navbar = () => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <Button>Sign In</Button>
+              <Button children="Sign in" to='/login'
+              ></Button>
             </div>
           </div>
         </div>

@@ -9,7 +9,8 @@ const FavoriteButton = ({ children }) => {
   const removeFavorite = "Remove 💔";
   const makefavorite = "Favorite";
   return (
-    <a href
+    <a
+      href
       className="button is-primary has-text-weight-bold favorite-button"
       onClick={onClick}
     >

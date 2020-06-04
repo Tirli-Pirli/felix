@@ -1,18 +1,36 @@
 import React from "react";
 import "./App.scss";
 import Navbar from "./components/Navbar/Navbar";
-import Hero from "./components/Hero/Hero";
-import Movies from "./components/Movies/Movies";
 import Footer from "./components/Footer/Footer";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import Private from "./components/PrivateRoute/Private"
+
 
 const App = () => {
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
-      <Movies />
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+          <Switch>
+          <Route exact path="/home">
+            <Home/>
+          </Route>
+          <Route exact path="/login">
+              <Login />
+          </Route>
+          <PrivateRoute exact path="/content">
+              <Private/>
+          </PrivateRoute>
+          <Redirect from="/" exact to={localStorage.getItem('token') ? '/content' : '/home'}/>
+        </Switch>
+        
+        <Footer />
+      </div>
+    </Router>
+    
   );
 };
 

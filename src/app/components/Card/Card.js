@@ -8,7 +8,7 @@ const Card = ({ title, description, image }) => {
       <div className="card has-background-black-ter equal-height">
         <div className="card-image">
           <figure className="image is-square">
-            <img src={image} alt="Placeholder" />
+            <img src={image} alt="img" />
           </figure>
         </div>
 
