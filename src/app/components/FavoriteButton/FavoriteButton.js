@@ -3,11 +3,14 @@ import "./FavoriteButton.scss";
 
 const FavoriteButton = ({ children }) => {
   const [favorite, setFavorite] = useState(false);
+  
   const onClick = () => {
     setFavorite((prevState) => !prevState);
   };
   const removeFavorite = "Remove 💔";
   const makefavorite = "Favorite";
+
+
   return (
     <a
       href

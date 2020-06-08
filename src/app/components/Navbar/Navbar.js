@@ -6,10 +6,17 @@ import logo from "../../images/logo.svg";
 
 const Navbar = () => {
   const [burger, setBurger] = useState(false);
+  const [login, setLogout] = useState(false)
 
   const onClick = () => {
     setBurger((prevState) => !prevState);
   };
+
+  const onLogin = () => {
+    setLogout((prevState) => !prevState)
+  }
+  const singnedIn = "Sign In";
+  const signedOut = "Sign Out";
 
  
   return (
@@ -39,8 +46,8 @@ const Navbar = () => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <Button children="Sign in" to='/login'
-              ></Button>
+              <Button children="Sign in" to='/login' onClick={onLogin}
+              >{login ? signedOut : singnedIn}</Button>
             </div>
           </div>
         </div>

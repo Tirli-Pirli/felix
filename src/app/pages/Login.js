@@ -1,13 +1,19 @@
 import React, { useState, useCallback } from "react";
 import Button from "../components/Button/Button";
-import { withRouter} from 'react-router-dom'
+import { useHistory} from 'react-router-dom';
+
 import "../scss/signin.scss"
 
-const Login = ({props}) => {
+
+
+const Login = () => {
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const history = useHistory();
 
-    const loginAPI = useCallback(() => {
+    const loginAPI = useCallback((e) => {
+        e.preventDefault()
           fetch ("https://academy-video-api.herokuapp.com/auth/login", {
             method: "POST",
             body: JSON.stringify({username: email, password: password}),
@@ -17,8 +23,9 @@ const Login = ({props}) => {
         .then((response) => {
             console.log(response);
             localStorage.setItem("token", response.token);
+            history.replace('/content')
     })
-},[email,password])
+},[email,password, history])
 
  const loginEmail = (e) => {
         
@@ -33,13 +40,13 @@ const Login = ({props}) => {
             <form onSubmit={loginAPI} className="SignIn_container">
                 <input className="input" type="text" placeholder="Email" onChange={loginEmail} />
                 <input className="input" type="password" placeholder="Password" onChange={loginPassword} />
-                <Button type="submit">Login</Button>
+                <Button type="submit">Sign In</Button>
             </form>
         </div>
     )
 }
 
-export default withRouter(Login)
+export default Login
 
 // class Login extends Component {
 //     constructor(props){
